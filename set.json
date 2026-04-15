@@ -1,0 +1,9 @@
+{
+    "__ON_INPUT__": "form-control",
+    "__ON_SELECT__": "form-control",
+    "__ON_SELECT_DIV__": "",
+    "__ON_TEXTAREA__": "form-control",
+    "__ON_BUTTON__": "btn btn-secondary",
+    "__ON_CHECKBOX__": "",
+    "__ON_CHECKLABEL__": ""
+}

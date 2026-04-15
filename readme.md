@@ -1,7 +1,8 @@
-> 지원 중단된 스킨으로, 최신 오픈나무와 호환되지 않을 수 있음을 알립니다.
+> GopenNAMU(최신 오픈나무) 호환 패치가 적용된 버전입니다.
 
 ## 개요
-다올위키에서 사용했던 Vision 스킨입니다.
+[Wikive/Vision-Skin](https://github.com/Wikive/Vision-Skin)의 포크입니다.
+최신 GopenNAMU와의 호환성 문제를 수정했습니다.
 
 ## 추가적인 내용
 [[자세히 알아보기]](https://wiki.daol.cc/w/다올위키%2FVision)

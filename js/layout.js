@@ -3,7 +3,7 @@ function ringo_do_xss_encode(data) {
     data = data.replace(/'/g, '&#x27;');
     data = data.replace(/"/g, '&quot;');
     data = data.replace(/</g, '&lt;');
-    data = data.replace(/</g, '&gt;');
+    data = data.replace(/>/g, '&gt;');
 
     return data;
 }
@@ -52,7 +52,7 @@ function ringo_do_side_button_1() {
 
 ringo_do_side_button_2();
 function ringo_do_side_button_2() {
-    fetch("/api/recent_discuss").then(function(res) {
+    fetch("/api/recent_discuss/10").then(function(res) {
         return res.json();
     }).then(function(text) {
         let data = '';

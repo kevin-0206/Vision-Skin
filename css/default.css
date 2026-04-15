@@ -1,8 +1,8 @@
 :root {
-    --main-color: #696FFF;
-    --menu-button-color: #696FFF;
-    --sub-color: #A8ACFF;
-    --light-sub-color: #7E83FF;
+    --main-color: #006AFF;
+    --menu-button-color: #006AFF;
+    --sub-color: #0098FF;
+    --light-sub-color: #0098FF;
     --border-color: #e1e8ed; /* 여기서 부터는 수정 안 해도 됩니다. */
     --sub-border-color: #ccc;
     --body-color: #f3f3f3;
@@ -602,6 +602,23 @@ div#sidebar-0-name3 {
     float: right;
     padding-right: 1rem;
     padding-top: 1rem;
+}
+
+.vision .content-wrapper .vision-content .vision-content-header .content-tools .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.vision .content-wrapper .vision-content .vision-content-header .content-tools .btn-group > .btn {
+    border-radius: 0 !important;
+}
+.vision .content-wrapper .vision-content .vision-content-header .content-tools .btn-group > .btn:first-child {
+    border-top-left-radius: 1rem !important;
+    border-bottom-left-radius: 1rem !important;
+}
+.vision .content-wrapper .vision-content .vision-content-header .content-tools .btn-group > .btn:last-child {
+    border-top-right-radius: 1rem !important;
+    border-bottom-right-radius: 1rem !important;
 }
 
 .vision .content-wrapper .vision-content .vision-content-header .content-tools .tools-btn {
