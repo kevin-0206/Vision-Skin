@@ -56,7 +56,7 @@ function ringo_do_side_button_1() {
         let data = '';
         for(let for_a = 0; for_a < text.length && for_a < 14; for_a++) {
             if(text[for_a][6] === '') {
-                data += '<li><a class="recent-item" href="/w/'+ ringo_do_xss_encode(text[for_a][1]) + '">';
+                data += '<li><a class="recent-item" href="/w/'+ ringo_do_url_encode(text[for_a][1]) + '">';
                 data += '<span class="recent-time">' + ringo_do_xss_encode(text[for_a][2].slice(11, -3)) + '</span>';
                 data += '<span class="recent-title">' + ringo_do_xss_encode(text[for_a][1]) + '</span></a></li>';
             } else {
@@ -110,7 +110,9 @@ function ringo_do_side_button_4() {
         if (!Array.isArray(text)) throw new Error('Invalid list');
         let data = '';
         for(let for_a = 0; for_a < text.length && for_a < 8; for_a++) {
-            data += '<li><a class="recent-item" href="'+ text[for_a][8] + ringo_do_xss_encode(text[for_a][1]) + '">';
+            const url = new URL(text[for_a][8] + ringo_do_url_encode(text[for_a][1]));
+            if (url.protocol !== 'https:' && url.protocol !== 'http:') continue;
+            data += '<li><a class="recent-item" href="' + ringo_do_xss_encode(url.href) + '">';
             data += '<span class="recent-time">' + ringo_do_xss_encode(text[for_a][2].slice(11, -3)) + '</span>';
             data += '<span class="recent-title">' + "[" + ringo_do_xss_encode(text[for_a][7]) + "] " + ringo_do_xss_encode(text[for_a][1]) + '</span></a></li>';
         }
