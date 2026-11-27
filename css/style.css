@@ -65,33 +65,31 @@ td {
     padding: 5px 10px;
 }
 
-#toc, .opennamu_TOC {
+/* Table of contents: preserve Vision styling, use native details flow. */
+#toc, .opennamu_main .opennamu_TOC {
     border: 1px solid var(--sub-border-color);
     display: inline-block;
-    padding: 20px 26px 22px 20px;
+    padding: 20px;
     font-size: 15px;
     margin-bottom: 20px;
     border-radius: 20px;
 }
 
-#toc-name, .opennamu_TOC_title {
+#toc-name, .opennamu_main .opennamu_TOC_title {
     font-size: 1.25rem;
+    font-weight: bold;
     display: block;
-    margin-left: -8px;
-    margin-top: -10px;
-    margin-bottom: -24px;
-    padding-top: 10px;
-    padding-bottom: 8px;
-}
-
-/* Keep the collapsed TOC title centered without the expanded-list offsets. */
-details#toc.opennamu_TOC:not([open]) {
-    padding: 12px 20px;
-}
-
-details#toc.opennamu_TOC:not([open]) > summary.opennamu_TOC_title {
     margin: 0;
     padding: 0;
+}
+
+/* The renderer inserts a line break before the first entry. */
+.opennamu_main details.opennamu_TOC > summary + br {
+    display: none;
+}
+
+.opennamu_main details.opennamu_TOC[open] > summary {
+    margin-bottom: 0.4rem;
 }
 
 div.scroll-buttons a {
