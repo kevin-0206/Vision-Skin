@@ -30,13 +30,13 @@
             <link rel="stylesheet" href="/views/vision/css/dark.css.cache_v6">
         {% endif %}
         <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-        <link rel="shortcut icon" href="/image/favicon.ico">
+        <link rel="shortcut icon" href="/views/main_css/file/favicon.ico.cache_v1">
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.min.js" integrity="sha512-t0ovA8ZOiDuaNN5DaQQpMn37SqIwp6avyoFQoW49hOmEYSRf8mTCY2jZkEVizDT+IZ9x+VHTZPpcaMA5t2d2zQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js" integrity="sha512-Ww1y9OuQ2kehgVWSD/3nhgfrb424O3802QYP/A5gPXoM4+rRjiKrjHdGxQKrMGQykmsJ/86oGdHszfcVgUr4hA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-        <script defer src="/views/vision/js/layout.js.cache_v3"></script>
-        <script defer src="/views/vision/js/skin_set.js.cache_v6"></script>
+        <script defer src="/views/vision/js/layout.js.cache_v4"></script>
+        <script defer src="/views/vision/js/skin_set.js.cache_v7"></script>
         {{imp1[5]|safe}}
         {{imp2[3]|safe}}
         {% if imp3[0] != 0 %}
@@ -51,6 +51,7 @@
         <meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport" />
         <meta property="og:type" content="website">
         <meta name="theme-color" content="#696FFF">
+        <link rel="canonical" href="{{user_path}}" />
     </head>
     <body class="vision">
         <div class="nav-wrapper">
@@ -61,7 +62,7 @@
                         <a class="nav-link" href="/recent_changes"><span class="fa fa-solid fa-compass"></span><span class="hide-title">{{'recent_change'|load_lang}}</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/recent_discuss/1/open"><span class="fa fa-solid fa-comment-dots"></span><span class="hide-title">{{'recent_discussion'|load_lang}}</span></a>
+                        <a class="nav-link" href="/bbs/in/-1"><span class="fa fa-solid fa-comment-dots"></span><span class="hide-title">{{'thread_bbs'|load_lang}}</span></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle dropdown-toggle-fix" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -146,7 +147,7 @@
                             {% endif %}
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/record/{{imp2[10]}}"><span class="hide-title">{{'edit_record'|load_lang}}</span></a>
-                            <a class="dropdown-item" href="/record/topic/{{imp2[10]}}"><span class="hide-title">{{'discussion_record'|load_lang}}</span></a>
+                            <a class="dropdown-item" href="/record/bbs/{{imp2[10]}}"><span class="hide-title">{{'bbs_record'|load_lang}}</span></a>
                             {% if imp2[2] == 1 %}
                                 <a class="dropdown-item" href="/watch_list"><span class="hide-title">{{'watchlist'|load_lang}}</span></a>
                                 <a class="dropdown-item" href="/star_doc"><span class="hide-title">{{'star_doc'|load_lang}}</span></a>
@@ -175,7 +176,7 @@
                 <form method="post" action="/search" id="searchform" class="form-inline">
                     <div class="input-group">
                         <a class="btn btn-secondary" id="navbar-random" href="/random"><i class="fa fa-random"></i></a>
-                        <input type="search" name="search" placeholder="검색하려면 여기에 입력하세요." accesskey="f" class="form-control" id="searchInput" autocomplete="off">
+                        <input type="search" name="search" placeholder="{{'search'|load_lang}}" accesskey="f" class="form-control" id="searchInput" autocomplete="off">
                         <span class="input-group-btn">
                             <button formaction="/goto" name="go" value="view" id="searchGoButton" class="btn btn-secondary"><span class="fa fa-solid fa-magnifying-glass"></span></button>
                             <button name="fulltext" value="search" id="searchSearchButton" class="btn btn-secondary"><span class="fa fa-arrow-right"></span></button>
@@ -247,6 +248,9 @@
                             <div class="page-view">
                                 {{'page_view'|load_lang}}: {{imp3[7]}}
                             </div>
+                            {% if length_doc != "" %}
+                                <div class="page-view">{{'length_doc'|load_lang}}: {{length_doc}}</div>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>
@@ -294,7 +298,8 @@
                                 <i class="sidebar-angle fa-solid fa-bell"></i>
                                 <span class="sidebar-0-item-sub">
                                     {{imp2[8]}}
-                                </span> 
+                                </span>
+                            </a>
                         {% else %}
                             <a class="sidebar-0-item" href="/alarm">
                                 <i class="fa fa-solid fa-bell"></i> {{'alarm'|load_lang}}
@@ -318,15 +323,16 @@
                     <a class="sidebar-1-title" href="/recent_changes"><i class="fa fa-solid fa-compass"></i> {{'recent_change'|load_lang}} <i class="sidebar-angle fa-solid fa-angle-right"></i></a>
                     <ul class="sidebar-1-list" id="sidebar-1-list">
                         <li><span id="sidebar-1-item">[불러오는 중...]</span></li>
+                    </ul>
                 </div>
                 <div class="sidebar-2">
-                    <a class="sidebar-2-title" href="/recent_discuss"><i class="fa fa-solid fa-comment-dots"></i> {{'recent_discussion'|load_lang}} <i class="sidebar-angle fa-solid fa-angle-right"></i></a>
+                    <a class="sidebar-2-title" href="/bbs/in/-1"><i class="fa fa-solid fa-comment-dots"></i> {{'thread_bbs'|load_lang}} <i class="sidebar-angle fa-solid fa-angle-right"></i></a>
                     <ul class="sidebar-2-list" id="sidebar-2-list">
                         <li><span id="sidebar-2-item">[불러오는 중...]</span></li>
                     </ul>
                 </div>
                 <div class="sidebar-3">
-                    <a class="sidebar-3-title" href="/bbs/main"><i class="fa fa-file-text"></i> 최근 게시글 <i class="sidebar-angle fa-solid fa-angle-right"></i></a>
+                    <a class="sidebar-3-title" href="/bbs/main"><i class="fa fa-file-text"></i> {{'post_recent'|load_lang}} <i class="sidebar-angle fa-solid fa-angle-right"></i></a>
                     <ul class="sidebar-3-list" id="sidebar-3-list">
                         <li><span id="sidebar-3-item">[불러오는 중...]</span></li>
                     </ul>
