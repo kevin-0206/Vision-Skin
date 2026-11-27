@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* 리스트 */ 
 .opennamu_main ul, .opennamu_main .opennamu_ul {
-    padding-left: 0.7rem;
+    padding-left: 1.5rem;
 }
 
 .opennamu_main .opennamu_ul li, li {
