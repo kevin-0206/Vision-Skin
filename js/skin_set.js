@@ -2,6 +2,11 @@ function ringo_do_regex_data(data) {
     return new RegExp('(?:^|; )' + data + '=([^;]*)');
 }
 
+function ringo_get_cookie(data) {
+    const result = document.cookie.match(ringo_do_regex_data(data));
+    return result ? result[1] : '';
+}
+
 function ringo_get_post() {
     const check = document.getElementById('invert');
     if(check.checked === true) {
@@ -44,7 +49,7 @@ function ringo_get_post() {
 function ringo_load_skin_set() {
     let cookies = document.cookie;
     
-    if(window.location.pathname === '/change/skin_set') {
+    if(window.location.pathname === '/change/skin_set' && document.getElementById("main_skin_set")) {
         let set_language = {
             "en-US" : {
                 "save" : "Save",
@@ -65,17 +70,17 @@ function ringo_load_skin_set() {
             }
         }
 
-        let language = cookies.match(ringo_do_regex_data('language'))[1];
-        let user_language = cookies.match(ringo_do_regex_data('user_language'))[1];
+        let language = ringo_get_cookie('language') || document.documentElement.lang || 'ko-KR';
+        let user_language = ringo_get_cookie('user_language') || language;
         if(user_language in set_language) {
             language = user_language;
         }
 
-        if(!language in set_language) {
+        if(!(language in set_language)) {
             language = "en-US";
         }
 
-        let set_data = {};
+        let set_data = { invert: "", use_sys_darkmode: "", off_sidebar: "", sidebar_right: "" };
 
         if(cookies.match(ringo_do_regex_data('main_css_darkmode')) && cookies.match(ringo_do_regex_data('main_css_darkmode'))[1] === '1') {
             set_data["invert"] = "checked";
