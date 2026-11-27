@@ -84,6 +84,16 @@ td {
     padding-bottom: 8px;
 }
 
+/* Keep the collapsed TOC title centered without the expanded-list offsets. */
+details#toc.opennamu_TOC:not([open]) {
+    padding: 12px 20px;
+}
+
+details#toc.opennamu_TOC:not([open]) > summary.opennamu_TOC_title {
+    margin: 0;
+    padding: 0;
+}
+
 div.scroll-buttons a {
     display: inline-block;
     width: 45px;
